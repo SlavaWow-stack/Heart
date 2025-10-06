@@ -60,16 +60,28 @@
       color: #ff8fb0;
       margin-top: 0px;
       opacity: 0;
-      animation: typing 2.5s steps(10, end) forwards 4.5s;
       white-space: nowrap;
       overflow: hidden;
       border-right: 3px solid #ff8fb0;
       width: 0;
+      animation:
+        typing 2.5s steps(10, end) forwards 4.5s,
+        hideCursor 0.3s linear forwards 7.3s,
+        glow 2s ease-in-out infinite alternate 7.6s;
     }
 
     @keyframes typing {
       0% { opacity: 1; width: 0; }
       100% { width: 140px; opacity: 1; }
+    }
+
+    @keyframes hideCursor {
+      to { border-right: none; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ffb6c1, 0 0 10px #ff99cc; }
+      to { text-shadow: 0 0 15px #ff66aa, 0 0 30px #ff1493; }
     }
 
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -83,7 +95,6 @@
         <stop offset="100%" style="stop-color:#ff1a75;stop-opacity:1" />
       </linearGradient>
     </defs>
-    <!-- нормальное сердце -->
     <path class="outline" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
     <path class="heart-fill" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
   </svg>
