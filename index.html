@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для тебя ❤️</title>
+  <style>
+    body {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    svg {
+      width: 300px;
+      height: 300px;
+    }
+
+    path {
+      fill: none;
+      stroke: #ff2e2e;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 1500;
+      stroke-dashoffset: 1500;
+      animation: draw 4s ease forwards;
+    }
+
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .heart-fill {
+      fill: url(#grad);
+      opacity: 0;
+      animation: fill 1s ease forwards 4s;
+    }
+
+    @keyframes fill {
+      to { opacity: 1; }
+    }
+
+    .pulse {
+      animation: pulse 1.8s ease-in-out infinite 5.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.4)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.7)); }
+    }
+
+    .text {
+      position: absolute;
+      font-family: 'Pacifico', cursive;
+      font-size: 28px;
+      color: #ff8fb0;
+      margin-top: 0px;
+      opacity: 0;
+      animation: typing 2.5s steps(10, end) forwards 4.5s;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #ff8fb0;
+      width: 0;
+    }
+
+    @keyframes typing {
+      0% { opacity: 1; width: 0; }
+      100% { width: 140px; opacity: 1; }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 512 512" class="pulse">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#ff4d4d;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ff1a75;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    <!-- нормальное сердце -->
+    <path class="outline" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
+    <path class="heart-fill" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
+  </svg>
+
+  <div class="text">Для тебя…</div>
+</body>
+</html>
