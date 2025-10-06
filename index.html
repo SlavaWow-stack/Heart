@@ -3,27 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Для тебя ❤️</title>
+  <title>Открой и улыбнись 💖</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
     body {
-      background-color: #fff;
+      margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background: linear-gradient(45deg, #ff4d88, #ff1a75, #ff6699);
+      background-size: 400% 400%;
+      animation: gradient 8s ease infinite;
+      font-family: 'Pacifico', cursive;
       overflow: hidden;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .cover, .inside {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      backface-visibility: hidden;
+      transition: transform 1s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .cover {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      color: #ff4d88;
+      transform-origin: bottom;
+      z-index: 2;
+    }
+
+    .inside {
+      background: #fff;
+      transform: rotateX(-180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
     }
 
+    .card.open .cover {
+      transform: rotateX(-180deg);
+    }
+
+    .card.open .inside {
+      transform: rotateX(0deg);
+    }
+
+    .arrow {
+      position: absolute;
+      bottom: 30px;
+      font-size: 18px;
+      color: #fff;
+      text-align: center;
+      animation: bounce 1.5s infinite;
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     svg {
-      width: 300px;
-      height: 300px;
+      width: 100px;
+      height: 100px;
     }
 
     path {
       fill: none;
       stroke: #ff2e2e;
-      stroke-width: 4;
+      stroke-width: 3;
       stroke-linecap: round;
       stroke-dasharray: 1500;
       stroke-dashoffset: 1500;
@@ -54,51 +126,50 @@
     }
 
     .text {
-      position: absolute;
-      font-family: 'Pacifico', cursive;
-      font-size: 28px;
-      color: #ff8fb0;
-      margin-top: 0px;
+      font-size: 24px;
+      color: #ff7fa3;
+      margin-top: 10px;
       opacity: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid #ff8fb0;
-      width: 0;
-      animation:
-        typing 2.5s steps(10, end) forwards 4.5s,
-        hideCursor 0.3s linear forwards 7.3s,
-        glow 2s ease-in-out infinite alternate 7.6s;
+      animation: appear 1s ease forwards 5s, glow 2s ease-in-out infinite alternate 6s;
     }
 
-    @keyframes typing {
-      0% { opacity: 1; width: 0; }
-      100% { width: 140px; opacity: 1; }
-    }
-
-    @keyframes hideCursor {
-      to { border-right: none; }
+    @keyframes appear {
+      to { opacity: 1; }
     }
 
     @keyframes glow {
       from { text-shadow: 0 0 5px #ffb6c1, 0 0 10px #ff99cc; }
       to { text-shadow: 0 0 15px #ff66aa, 0 0 30px #ff1493; }
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
   </style>
 </head>
 <body>
-  <svg viewBox="0 0 512 512" class="pulse">
-    <defs>
-      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#ff4d4d;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#ff1a75;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <path class="outline" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
-    <path class="heart-fill" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
-  </svg>
+  <div class="card" id="card">
+    <div class="cover">💌 Открой меня</div>
+    <div class="inside">
+      <svg viewBox="0 0 512 512" class="pulse">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff4d4d;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff1a75;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <path class="outline" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
+        <path class="heart-fill" d="M256 472.3l-35.3-32.2C118 339 48 278.7 48 199.8 48 140.2 93.3 96 152.5 96c36.3 0 70.2 19.1 89.5 49.4C261.3 115.1 295.2 96 331.5 96 390.7 96 436 140.2 436 199.8c0 78.9-70 139.2-172.7 240.3L256 472.3z"/>
+      </svg>
+      <div class="text">Улыбнись :)</div>
+    </div>
+  </div>
 
-  <div class="text">Улыбнись :)</div>
+  <div class="arrow" id="arrow">⬆️<br>Нажми и увидишь чудо</div>
+
+  <script>
+    const card = document.getElementById('card');
+    const arrow = document.getElementById('arrow');
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+      arrow.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
